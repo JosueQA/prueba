@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi profesor</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--Desde la linea 10 hasta la 11 es un CDN de BOOTSTRAP el cual nos inserta una barra de 
+            búsqueda-->
+    <!--BOOTSTRAP es un framework de internet que nos da un estilo ya predeterminado a la página
+            al intrudicir su CDN-->
+    <!--CDN es un código que descarga información directamente de internet cuando se ejecuta,
+            en este caso descarga el estilo que ofrece BOOTSTRAP-->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!--CUSTOM CSS-->
+    <!--Usamos las 2 pares de llaves con url_for porque estamos usando python, de caso contrario 
+            solo pondriamos /static/css/main.css-->
+    <!--url_for() es una función que nos ayuda con las llaves para localizar el archivo 
+            que queremos importar-->  
+
+<body>
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" >
+            <div class="carousel-item active">
+                <img src="images/3.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+</head>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Python web app</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <!--Al colocar / en href(donde rediccionara) significa que nos lleva a la página
+                        principal-->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Aqui introducimos la barra de búsqueda que elegimos de BOOTSTRAP, la cual ira en el CDN-->
+    <!--Al colocar la barra de búsqueda que elegimos, debe ir si o si junto al CDN, ya que este 
+    ultimo le da la ubicación e imagen y el primero le da el contenido-->
+    <div class="container p-4">
+        <!-- al colocar PUNTOcontainer agregamos un div-->
+        {% block content %}
+        <!-- este metodo nos ayuda a poner al centro el block content-->
+        {% endblock %}
+    </div>
+    <!--Utilizamos block content para apartar un contenido de bloque en el cual,
+        en el archivo deseado, podamos agregar su contenido propio-->
+    <!--Usamos endblock para avisar que ahi es el final del contenido del bloque-->
+</body>
+
+</html>
+
+<!--ESTAMOS USANDO layout.html COMO UN 'MOTOR DE PLANTILLA' es una plantilla que
+    realizamos poderla insertar en los otros apartados como home.html o About.html
+    el código que emos puesto aqi, eso nos ahorra volver a escribir todo este 
+    código en cada archivo que programemos. Para insertarlo en algun archivo
+    utilizamos el comando {PORCENTAJE extends "Nombre del archivo.extension" %} 
+    (en este caso el nombre seria asi: "layout.html"). Recordemos agregar los 
+    comandos {PORCENTAJE block content %} y {PORCENTAJE endblock %} para, en 
+    medio de entre las dos líneas, coloquemos el código propio que vaya en cada 
+    archivo-->
